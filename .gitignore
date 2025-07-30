@@ -1,0 +1,11 @@
+.vscode/
+
+project1/
+project2/
+
+NN_models/
+results_data/
+results_images/
+
+__pycache__/
+*.pth
