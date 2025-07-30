@@ -17,6 +17,7 @@ from train import generate_layer_configurations, filter_layer_configurations, ge
 MIN_N = 86
 MAX_N = 96
 MIN_BETA = np.array([0.15, 0.20, 0.30, 0.35, 0.35, 0.35])
+RMS_CRITERION = 3.0
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 def prepare_evaluate_data():
@@ -67,7 +68,7 @@ def evaluate_model(inputs_original, inputs_scaled, expt, configs):
     num_calc = len(configs)
     good_hidden_layers = []
     good_hidden_RMS = []
-    RMS_criterion = 1.0
+
 
     for idx, config in enumerate(configs):
         hidden_RMS = 0
@@ -113,7 +114,7 @@ def evaluate_model(inputs_original, inputs_scaled, expt, configs):
         hidden_RMS = np.sqrt(hidden_RMS / total_count) if total_count > 0 else 0
         ratio_RMS = np.sqrt(ratio_RMS / ratio_count) if ratio_count > 0 else 0
 
-        if hidden_RMS + ratio_RMS < RMS_criterion:
+        if hidden_RMS + ratio_RMS < RMS_CRITERION:
             good_hidden_layers.append(config)
             good_hidden_RMS.append(hidden_RMS + ratio_RMS)
         if (idx + 1) % 10 == 0:
