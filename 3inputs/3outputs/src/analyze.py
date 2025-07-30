@@ -4,7 +4,7 @@ import os
 
 from model import NN
 from config import BASE_DIR, MODEL_DIR, INPUTS_DIM, OUTPUTS_DIM
-from evaluate import prepare_evaluate_data, run_with_timeout
+from NN_models import prepare_evaluate_data, run_with_timeout
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 # Constants
@@ -17,11 +17,7 @@ MIN_BETA = np.array([0.15, 0.20, 0.30, 0.35, 0.35, 0.35])
 
 OUTPUT_LABELS = ["eps", "kappa", "chi_nu"]
 
-GOOD_MODELS = [,
-               ,
-               ,
-               ,
-               ,
+GOOD_MODELS = [[16, 16, 16, 16, 16]
                ]
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
