@@ -55,7 +55,7 @@ def IBM2_energy(output, n_nu, beta_f):
     IBM2_energy = (
         eps * num_bosons * beta2 * deno
     ) + (
-        6 * n_nu * kappa * beta2 * deno * deno * (4 - (chi_nu - 0.5) * 2 * torch.sqrt(torch.tensor(2 / 7, device=output.device)) * beta_b - chi_nu * beta2 / 7)
+        6 * n_nu * kappa * beta2 * deno * deno * (4 - (chi_nu - 0.5) * 2 * torch.sqrt(torch.tensor(2 / 7)) * beta_b - chi_nu * beta2 / 7)
     )
 
     return IBM2_energy
