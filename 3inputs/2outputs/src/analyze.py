@@ -17,7 +17,10 @@ MIN_BETA = np.array([0.15, 0.20, 0.30, 0.35, 0.35, 0.35])
 
 OUTPUT_LABELS = ["eps", "kappa"]
 
-GOOD_MODELS = [[64, 32, 16, 32, 32]
+GOOD_MODELS = [[128, 128, 128],
+               [64, 128, 128],
+               [128, 128, 128, 128, 128],
+               
                ]
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -55,7 +58,7 @@ def analyze_top5(good_models, inputs_original, inputs_scaled):
         for i in range(len(inputs_scaled)):
             with torch.no_grad():
                 input_tensor = torch.tensor(inputs_scaled[i], dtype=torch.float32).unsqueeze(0)
-            output = model(input_tensor)
+                output = model(input_tensor)
             results = [output[0][0], output[0][1]]
             command = [
                 "bash", str(MODEL_DIR / "src" / "NN_test.sh"),
@@ -73,7 +76,7 @@ def analyze_top5(good_models, inputs_original, inputs_scaled):
                 energies = list(map(float, res.split()))
                 ratio = np.where(
                     energies[0] != 0,
-                    (energies[1] - energies[0]) / energies[0],
+                    energies[1] / energies[0],
                     np.nan
                 )
                 print(energies, ratio)
